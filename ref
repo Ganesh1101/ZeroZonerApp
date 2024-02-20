@@ -1,0 +1,25 @@
+const file=(value)=>{
+        flowchart=value;
+        setflowchart(flowchart);
+    }
+    const pickFile = async () => {
+        try {
+          const res = await DocumentPicker.pick({
+            type: [DocumentPicker.types.allFiles]
+
+          });
+          file(res);
+        } catch (err) {
+          if (DocumentPicker.isCancel(err)) {
+            console.log('Canceled');
+          } else {
+            console.log('Unknown Error: ' + JSON.stringify(err));
+            throw err;
+          }
+
+        }
+      };
+      <View style={styles.inputContainer}>
+      <Text style={{fontSize:20,marginRight:45}}>flow chart</Text>
+      <TouchableOpacity style={styles.input} onPress={pickFile}><Text>Upload file</Text></TouchableOpacity>
+</View>
